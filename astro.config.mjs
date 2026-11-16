@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkToc from 'remark-toc';
 
 import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
@@ -34,7 +35,8 @@ export default defineConfig({
 		},	
 	],
 	markdown: {
-		remarkPlugins: [remarkMath],
-		rehypePlugins: [rehypeKatex],
+		remarkPlugins: [remarkMath, [remarkToc, { heading: "Contents", maxDepth: 3 }]],
+  		rehypePlugins: [rehypeKatex],
+		shikiConfig: { wrap: true },
 	},
 });
